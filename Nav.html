@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <script src = "angular.min.js"></script>
+<style>
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 250px;;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body ng-app="main" ng-controller="try">
+
+<div id="mySidenav" class="sidenav">
+  <a href="#"><input type="button" class="closebtn" onclick="closeNav()" value=&times;></a>
+  <a href="#yo">About</a>
+  <a href="#ho">Services</a>
+  <a href="#bo">Clients</a>
+  <a href="#go">Contact</a>
+</div>
+
+<div id="main">
+  <h2>Sidenav Push Example</h2>
+  <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
+  <span style="font-size:30px;cursor:pointer"><input type="button" value="yo" onclick="openNav()">&#9776; open</span>
+
+
+
+<input type = "checkbox" ng-model = "enableDisableButton">Disable Button
+<button ng-disabled = "enableDisableButton">Click Me!</button>
+
+<p ng-repeat="nmae in stud.list> {{nmae.name}} <img src="{{nmae.photo}}"> </p> 
+
+</div>
+
+<script>
+var main = angular.module("main", []);
+
+main.controller('try', function($scope) {
+
+
+$scope.banner= ["Hello", "Hi", "Go away!"];
+$scope.currentIndex = 1; 
+
+  $interval( function(){ 
+      if($scope.currentIndex == 3){
+          $scope.currentIndex = 1;
+      }else{
+          $scope.currentIndex += 1;
+      }
+  }, 4000);
+$scope.stud = {
+
+first: "A",
+second: "",
+
+list: [{name:"Anna", age:'20', photo:'register.png'}, {name: "Arpita", age:'21'}, {name: "Tanisha"}, {name: "Mudita"}],
+
+
+full: function() {
+var a;
+a=$scope.stud;
+return a.first+" "+a.second;
+}
+};
+
+});
+
+</script>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+</script>     
+</body>
+</html> 
